@@ -60,5 +60,5 @@ func main(){
     fmt.Printf("%T, %q",n23,n23)
 	//添加修改
 	//ceshi ceshifff
-	//tianjia 
+	//tianji
 }
