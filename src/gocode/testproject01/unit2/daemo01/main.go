@@ -58,6 +58,5 @@ func main(){
 	var n22 int = 18
 	var n23 string = strconv.FormatInt(int64(n22),16)
     fmt.Printf("%T, %q",n23,n23)
-    //测试备注  哈哈
-	//添加修改项目
+	//添加修改wjz
 }
