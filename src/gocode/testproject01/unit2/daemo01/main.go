@@ -92,4 +92,13 @@ func main(){
 
 	str201 := now.Format("2006/01/02 15:04:05")
 	fmt.Println(str201)
+
+	var arr1 [5]int = [5]int{1,2,3,4,5}
+	fmt.Println(arr1)
+
+	var arr2 = [...]int{1,2,3,4,5,6}
+	fmt.Println(arr2)
+
+	var arr3 = [...]int{2:100,5:200}
+	fmt.Println(arr3)
 }
