@@ -61,5 +61,6 @@ func main(){
 	//添加修改
 	//ceshi ceshifff
 	//tianji
-	//woshi shui 
+	//woshi sh
+	fmt.Println("ceshi")
 }
