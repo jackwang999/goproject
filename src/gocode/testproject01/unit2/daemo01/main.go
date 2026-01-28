@@ -79,4 +79,17 @@ func main(){
 	fmt.Println(strings.TrimRight("!!!hello!!!","!"))
     fmt.Println(strings.HasPrefix("http://www.baidu.com","http"))
 	fmt.Println(strings.HasSuffix("http://www.baidu.com","com"))
+
+	fmt.Println(time.Now())
+	now := time.Now()
+	fmt.Printf("%T\n",time.Now())
+	fmt.Println(now.Year())
+	fmt.Println(int(now.Month()))
+	fmt.Println(now.Day())
+	fmt.Println(now.Hour())
+	fmt.Println(now.Minute())
+	fmt.Println(now.Second())
+
+	str201 := now.Format("2006/01/02 15:04:05")
+	fmt.Println(str201)
 }
