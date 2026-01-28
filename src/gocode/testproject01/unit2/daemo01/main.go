@@ -63,5 +63,20 @@ func main(){
 	fmt.Println("ceshi")
 
 	fmt.Println(strings.Index("helloll","ll"))
-	fmt.Println(strings.Replace("helloll","ll","zz",-1))
+	fmt.Println(strings.Replace("helloll","ll","好学生",-1))
+
+	shuzu1 := strings.Split("hello,world,ok",",")
+	fmt.Println(shuzu1,shuzu1[0],shuzu1[1],shuzu1[2])
+
+	str1 := strings.ToLower("HelloWorld")
+	str2 := strings.ToUpper("HelloWorld")
+	fmt.Println(str1)
+	fmt.Println(str2)
+
+	fmt.Println(strings.TrimSpace("   hello   "))
+	fmt.Println(strings.Trim("!!!hello!!!","!"))
+	fmt.Println(strings.TrimLeft("!!!hello!!!","!"))
+	fmt.Println(strings.TrimRight("!!!hello!!!","!"))
+    fmt.Println(strings.HasPrefix("http://www.baidu.com","http"))
+	fmt.Println(strings.HasSuffix("http://www.baidu.com","com"))
 }
