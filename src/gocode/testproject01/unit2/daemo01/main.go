@@ -141,4 +141,50 @@ func main(){
 	a[2] = "world"
 	fmt.Println(a)
 	fmt.Printf("a的类型是：%T\n",a)
+
+	b := make(map[int]string)
+	b[10] = "ok"
+	b[20] = "good"
+	fmt.Println(b)
+
+	c := map[int]string{
+		100:"java",
+		200:"go",
+		300:"python",
+	}
+	fmt.Println(c)
+	delete(c,200)
+	fmt.Println(c)
+
+	value31,bool1 := c[100]
+	fmt.Println("值是",value31,"是否查询到",bool1)
+
+
+	for k,_ := range c{
+		delete(c,k)
+	}
+	fmt.Println("C map:",c)
+
+
+	p1 := Person{Name: "Alice", Age: 30}
+	p2 := Person{"Bob", 25}
+	fmt.Println(p1)
+	fmt.Println(p2)
+	fmt.Println(p1.Name, p1.Age)
+
+	var p3 = new(Person)
+	p3.Name = "Charlie"   //本来应该是*p3
+	p3.Age = 28
+	fmt.Println(*p3)
+
+	p1.sayHello()
+	p2.sayHello()
+}
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p Person) sayHello(){
+	fmt.Printf("Hello, my name is %s and I am %d years old.\n", p.Name, p.Age)
 }
