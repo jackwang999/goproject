@@ -101,4 +101,44 @@ func main(){
 
 	var arr3 = [...]int{2:100,5:200}
 	fmt.Println(arr3)
+
+	var arr4 []int = []int{1,2,3}
+	var slice []int = arr4[1:3]
+	fmt.Println(slice)
+	fmt.Printf("%T,slice长度：%d,slice容量：%d\n",slice,len(slice),cap(slice))
+
+	var slice2 []int = make([]int,5,10)
+	fmt.Println(slice2)
+	fmt.Printf("slice2的长度是：%d，容量是：%d\n",len(slice2),cap(slice2))	
+
+	slice3 := []int{11,22,33,44,55}
+	fmt.Println(slice3)
+	slice4 := slice3[1:4]
+	fmt.Println(slice4)
+	slice4[0] = 222
+	fmt.Println(slice3)
+	fmt.Println(slice4)
+
+	for k,v := range slice3{
+		fmt.Println(k,v)
+	}
+
+	var arr11 = [...]int{1,2,3,4,5}
+	fmt.Printf("%T\n",arr11)
+	slice21 := arr11[1:]
+	fmt.Printf("%v",slice21)
+	arr12 := append(slice21,6,7,8)
+	fmt.Printf("%v",arr12)
+
+	var slice31 = make([]int,10)
+    copy(slice31,slice21)
+	fmt.Printf("slice31=%v\n",slice31)
+
+	fmt.Println("-----map的使用-----")
+	var a  map[int]string     //定义一个map
+	a = make(map[int]string,10)
+	a[1] = "hello"
+	a[2] = "world"
+	fmt.Println(a)
+	fmt.Printf("a的类型是：%T\n",a)
 }
