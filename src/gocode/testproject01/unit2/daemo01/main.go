@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+	"bufio"
+	"io"
 )
 
 type Nanren struct {
@@ -16,6 +19,14 @@ func (nr *Nanren) smoke() {
 	fmt.Println("男人抽烟")
 }
 
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p Person) sayHello() {
+	fmt.Printf("Hello, my name is %s and I am %d years old.\n", p.Name, p.Age)
+}
 func main() {
 	var age int
 	age = 18
@@ -195,24 +206,58 @@ func main() {
 	xiaonan.sayHello()
 	xiaonan.smoke()
 
-	file, err := os.Create("ceshi.txt")
+	// file, err := os.Create("ceshi1.txt")
+	// if err != nil {
+	// 	fmt.Println("创建文件失败:", err)
+	// 	// 	return
+	// 	// } else if _, err := file.WriteString("hello,王纪樟"); err != nil {
+	// 	// 	fmt.Printf("写入文件失败: %v\n", err)
+	// }
+
+	// fmt.Printf("文件=%v\n", file)
+
+	//err2 := file.Close()
+	// if err2 != nil {
+	// 	fmt.Println("关闭文件失败:", err2)
+	// }
+	content, err := ioutil.ReadFile("ceshi1.txt")
 	if err != nil {
-		fmt.Println("创建文件失败:", err)
-		// 	return
-		// } else if _, err := file.WriteString("hello,王纪樟"); err != nil {
-		// 	fmt.Printf("写入文件失败: %v\n", err)
+		fmt.Println("读取文件失败:", err, "\n")
 	}
+	fmt.Printf("%v", string(content))
+	// for i, v := range content {
+	// 	fmt.Printf("索引：%d，值：%v\n", i, string(v))
+	// }
+	//cd src/gocode/testproject01/unit2/daemo01
 
-	fmt.Printf("%v", file)
+	file, err := os.Open("ceshi.txt")
+	defer file.Close()    //语句压入栈，函数结束的时候执行
+    reader := bufio.NewReader(file)       //带缓存区的读取文件
+	for {
+		line, err := reader.ReadString('\n')  //读取一行内容，直到遇到换行符
+		if err == io.EOF {          //读取到了结尾
+			break
+		}
+        fmt.Print(line) //输出读取到的一行内容
+	}
+	fmt.Println("文件读取成功，全部读取完毕")	
 
-	defer file.Close()
-}
 
-type Person struct {
-	Name string
-	Age  int
-}
+	// 写文件
+	file1,err := os.OpenFile("D:/goproject/src/gocode/testproject01/unit2/daemo01/ceshidemo.txt", 
+	os.O_RDWR | os.O_CREATE, 0666)
+	if err != nil {
+		fmt.Println("打开文件失败", err)
+		return
+	}
+    defer file.Close()
+	writer := bufio.NewWriter(file1)
+	for i := 0; i < 10; i++ {
+		writer.WriteString("这是第" + strconv.Itoa(i) + "行数据。\n")
+	}
+    writer.WriteString("Hello, World!\n")
+    writer.Flush() //确保写入内容被刷新到文件中
 
-func (p Person) sayHello() {
-	fmt.Printf("Hello, my name is %s and I am %d years old.\n", p.Name, p.Age)
+	mode1 := os.FileMode(0777).String()
+	fmt.Println("文件权限模式：", mode1)    //文件权限模式： -rwxrwxrwx
 }
